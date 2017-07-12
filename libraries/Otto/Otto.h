@@ -1,9 +1,10 @@
 #ifndef Otto_h
 #define Otto_h
 
+#include <EEPROM.h>
 #include <Servo.h>
 #include <Oscillator.h>
-#include <EEPROM.h>
+
 
 #include <US.h>
 #include <LedMatrix.h>

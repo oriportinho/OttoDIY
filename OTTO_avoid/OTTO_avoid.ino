@@ -5,6 +5,9 @@
 //-----------------------------------------------------------------
 //-- Otto will avoid obstacles with this code!
 //-----------------------------------------------------------------
+#include <LedMatrix.h>
+#include <BatReader.h>
+#include <EEPROM.h>
 #include <Servo.h> 
 #include <Oscillator.h>
 #include <US.h>
@@ -50,20 +53,19 @@ void setup(){
 //-- Principal Loop ---------------------------------------------//
 ///////////////////////////////////////////////////////////////////
 void loop() {
-  if(obstacleDetected){ 
-               Otto.sing(S_surprise); 
-               Otto.playGesture(OttoFretful); 
-               Otto.sing(S_fart3); 
-               Otto.walk(2,1300,-1); 
-               Otto.turn(2,1000,-1);                
-             delay(50); 
-             obstacleDetector(); 
-             }        
-         else{ 
-            Otto.walk(1,1000,1); 
-            obstacleDetector(); 
-        }           
-  }  
+  if(obstacleDetected) { 
+    //Otto.sing(S_surprise); 
+    //Otto.playGesture(OttoFretful); 
+    //Otto.sing(S_fart3); 
+    Otto.walk(2,1300,-1); 
+    Otto.turn(2,1000,-1);                
+    delay(50); 
+    obstacleDetector(); 
+  } else { 
+    Otto.walk(1,1000,1); 
+    obstacleDetector(); 
+  }           
+}  
 
 ///////////////////////////////////////////////////////////////////
 //-- Function to read distance sensor & to actualize obstacleDetected variable
@@ -74,4 +76,5 @@ void obstacleDetector(){
         }else{
           obstacleDetected = false;
         }
+        obstacleDetected = true;
 }
